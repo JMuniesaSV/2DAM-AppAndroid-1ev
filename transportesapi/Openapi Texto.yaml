@@ -1,0 +1,734 @@
+openapi: 3.0.3
+info:
+  title: API de Transportes
+  description: API para gestionar transporte, vehículos, rutas, empleados y clientes.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+
+paths:
+  /transportes:
+    get:
+      tags:
+        - transportes
+      summary: Obtener todos los transportes
+      parameters:
+        - name: codigo
+          in: query
+          description: Filtrar por código de transporte
+          required: false
+          schema:
+            type: string
+        - name: estado
+          in: query
+          description: Filtrar por estado del transporte (activo o inactivo)
+          required: false
+          schema:
+            type: boolean
+        - name: fechaCreacion
+          in: query
+          description: Filtrar por fecha de creación del transporte
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Lista de transportes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transporte'
+        '404':
+          description: No se encontraron transportes
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - transportes
+      summary: Crear un nuevo transporte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transporte'
+      responses:
+        '201':
+          description: Transporte creado correctamente
+        '400':
+          description: Error en los datos proporcionados
+
+  /transportes/{id}:
+    get:
+      tags:
+        - transportes
+      summary: Obtener transporte por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transporte encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transporte'
+        '404':
+          description: Transporte no encontrado
+    put:
+      tags:
+        - transportes
+      summary: Actualizar un transporte existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transporte'
+      responses:
+        '200':
+          description: Transporte actualizado correctamente
+        '404':
+          description: Transporte no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    patch:
+      tags:
+        - transportes
+      summary: Actualizar parcialmente un transporte existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transporte'
+      responses:
+        '200':
+          description: Transporte parcialmente actualizado correctamente
+        '404':
+          description: Transporte no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    delete:
+      tags:
+        - transportes
+      summary: Eliminar un transporte por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Transporte eliminado correctamente
+        '404':
+          description: Transporte no encontrado
+
+  /vehiculos:
+    get:
+      tags:
+        - vehiculos
+      summary: Obtener todos los vehículos
+      parameters:
+        - name: matricula
+          in: query
+          description: Filtrar por matrícula de vehículo
+          required: false
+          schema:
+            type: string
+        - name: disponible
+          in: query
+          description: Filtrar por disponibilidad del vehículo
+          required: false
+          schema:
+            type: boolean
+        - name: fechaFabricacion
+          in: query
+          description: Filtrar por fecha de fabricación del vehículo
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Lista de vehículos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehiculo'
+        '404':
+          description: No se encontraron vehículos
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - vehiculos
+      summary: Crear un nuevo vehículo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehiculo'
+      responses:
+        '201':
+          description: Vehículo creado correctamente
+        '400':
+          description: Error en los datos proporcionados
+
+  /vehiculos/{id}:
+    get:
+      tags:
+        - vehiculos
+      summary: Obtener vehículo por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vehículo encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehiculo'
+        '404':
+          description: Vehículo no encontrado
+    put:
+      tags:
+        - vehiculos
+      summary: Actualizar un vehículo existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehiculo'
+      responses:
+        '200':
+          description: Vehículo actualizado correctamente
+        '404':
+          description: Vehículo no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    patch:
+      tags:
+        - vehiculos
+      summary: Actualizar parcialmente un vehículo existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehiculo'
+      responses:
+        '200':
+          description: Vehículo parcialmente actualizado correctamente
+        '404':
+          description: Vehículo no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    delete:
+      tags:
+        - vehiculos
+      summary: Eliminar un vehículo por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Vehículo eliminado correctamente
+        '404':
+          description: Vehículo no encontrado
+
+  /rutas:
+    get:
+      tags:
+        - rutas
+      summary: Obtener todas las rutas
+      parameters:
+        - name: origen
+          in: query
+          description: Filtrar por origen de la ruta
+          required: false
+          schema:
+            type: string
+        - name: destino
+          in: query
+          description: Filtrar por destino de la ruta
+          required: false
+          schema:
+            type: string
+        - name: fechaSalida
+          in: query
+          description: Filtrar por fecha de salida de la ruta
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Lista de rutas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ruta'
+        '404':
+          description: No se encontraron rutas
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - rutas
+      summary: Crear una nueva ruta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ruta'
+      responses:
+        '201':
+          description: Ruta creada correctamente
+        '400':
+          description: Error en los datos proporcionados
+
+  /rutas/{id}:
+    get:
+      tags:
+        - rutas
+      summary: Obtener ruta por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ruta encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ruta'
+        '404':
+          description: Ruta no encontrada
+    put:
+      tags:
+        - rutas
+      summary: Actualizar una ruta existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ruta'
+      responses:
+        '200':
+          description: Ruta actualizada correctamente
+        '404':
+          description: Ruta no encontrada
+        '400':
+          description: Error en los datos proporcionados
+    patch:
+      tags:
+        - rutas
+      summary: Actualizar parcialmente una ruta existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ruta'
+      responses:
+        '200':
+          description: Ruta parcialmente actualizada correctamente
+        '404':
+          description: Ruta no encontrada
+        '400':
+          description: Error en los datos proporcionados
+    delete:
+      tags:
+        - rutas
+      summary: Eliminar una ruta por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Ruta eliminada correctamente
+        '404':
+          description: Ruta no encontrada
+
+  /clientes:
+    get:
+      tags:
+        - clientes
+      summary: Obtener todos los clientes
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+        '404':
+          description: No se encontraron clientes
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - clientes
+      summary: Crear un nuevo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente creado correctamente
+        '400':
+          description: Error en los datos proporcionados
+
+  /clientes/{id}:
+    get:
+      tags:
+        - clientes
+      summary: Obtener cliente por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente no encontrado
+    put:
+      tags:
+        - clientes
+      summary: Actualizar un cliente existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente actualizado correctamente
+        '404':
+          description: Cliente no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    patch:
+      tags:
+        - clientes
+      summary: Actualizar parcialmente un cliente existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente parcialmente actualizado correctamente
+        '404':
+          description: Cliente no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    delete:
+      tags:
+        - clientes
+      summary: Eliminar un cliente por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente eliminado correctamente
+        '404':
+          description: Cliente no encontrado
+
+  /empleados:
+    get:
+      tags:
+        - empleados
+      summary: Obtener todos los empleados
+      responses:
+        '200':
+          description: Lista de empleados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Empleado'
+        '404':
+          description: No se encontraron empleados
+        '500':
+          description: Error del servidor
+    post:
+      tags:
+        - empleados
+      summary: Crear un nuevo empleado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empleado'
+      responses:
+        '201':
+          description: Empleado creado correctamente
+        '400':
+          description: Error en los datos proporcionados
+
+  /empleados/{id}:
+    get:
+      tags:
+        - empleados
+      summary: Obtener empleado por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Empleado encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empleado'
+        '404':
+          description: Empleado no encontrado
+    put:
+      tags:
+        - empleados
+      summary: Actualizar un empleado existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empleado'
+      responses:
+        '200':
+          description: Empleado actualizado correctamente
+        '404':
+          description: Empleado no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    patch:
+      tags:
+        - empleados
+      summary: Actualizar parcialmente un empleado existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empleado'
+      responses:
+        '200':
+          description: Empleado parcialmente actualizado correctamente
+        '404':
+          description: Empleado no encontrado
+        '400':
+          description: Error en los datos proporcionados
+    delete:
+      tags:
+        - empleados
+      summary: Eliminar un empleado por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Empleado eliminado correctamente
+        '404':
+          description: Empleado no encontrado
+
+components:
+  schemas:
+    Transporte:
+      type: object
+      properties:
+        id:
+          type: integer
+        codigo:
+          type: string
+        descripcion:
+          type: string
+        fechaCreacion:
+          type: string
+          format: date-time
+        estado:
+          type: boolean
+        cliente:
+          $ref: '#/components/schemas/Cliente'
+        ruta:
+          $ref: '#/components/schemas/Ruta'
+    Vehiculo:
+      type: object
+      properties:
+        id:
+          type: integer
+        matricula:
+          type: string
+        marca:
+          type: string
+        modelo:
+          type: string
+        disponible:
+          type: boolean
+        capacidadCarga:
+          type: number
+          format: float
+        fechaFabricacion:
+          type: string
+          format: date
+    Ruta:
+      type: object
+      properties:
+        id:
+          type: integer
+        origen:
+          type: string
+        destino:
+          type: string
+        fechaSalida:
+          type: string
+          format: date-time
+        distancia:
+          type: number
+          format: float
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        direccion:
+          type: string
+        telefono:
+          type: string
+        fechaRegistro:
+          type: string
+          format: date
+        vip:
+          type: boolean
+    Empleado:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        puesto:
+          type: string
+        salario:
+          type: number
+          format: float
+        fechaContratacion:
+          type: string
+          format: date
