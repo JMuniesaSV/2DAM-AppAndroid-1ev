@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_map"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="Ver mapa"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_register_vehiculo"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Registrar camion"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_preferences"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Preferencias"
+        app:showAsAction="always" />
+</menu>
