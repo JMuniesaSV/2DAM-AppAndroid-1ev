@@ -1,0 +1,3 @@
+[submodule "TransportesApp"]
+	path = TransportesApp
+	url = git@github.com:JMuniesaSV/2DAM-AppAndroid-1ev.git
