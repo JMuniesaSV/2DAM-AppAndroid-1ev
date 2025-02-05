@@ -30,15 +30,13 @@ public class VehiculoListView extends AppCompatActivity implements VehiculoListC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vehiculo_list);
+        setContentView(R.layout.activity_main);
 
         presenter = new VehiculoListPresenter(this);
-        presenter.loadVehiculos();
 
         vehiculoList = new ArrayList<>();
-        vehiculoAdapter = new VehiculoAdapter(this, vehiculoList);
 
-        RecyclerView recyclerView = findViewById(R.id.rvVehiculos);
+        RecyclerView recyclerView = findViewById(R.id.vehiculos_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(vehiculoAdapter);
@@ -63,7 +61,7 @@ public class VehiculoListView extends AppCompatActivity implements VehiculoListC
             Intent intent = new Intent(this, MapActivityView.class);
             intent.putParcelableArrayListExtra("vehiculoList", vehiculoList);
             startActivity(intent);
-        } else if (item.getItemId() == R.id.action_register_bike) {
+        } else if (item.getItemId() == R.id.action_register_vehiculo) {
             Intent intent = new Intent(this, RegisterVehiculoView.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.action_preferences) {

@@ -54,7 +54,7 @@ public class MapActivityView extends AppCompatActivity implements Style.OnStyleL
 
     private void addMarker(String message, double lat, double lon) {
         PointAnnotationOptions marker = new PointAnnotationOptions()
-                .withIconImage(BitmapFactory.decodeResource(getResources(), R.drawable.red_marker))
+                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.red_marker))
                 .withTextField(message)
                 .withPoint(Point.fromLngLat(lon, lat));
         pointAnnotationManager.create(marker);

@@ -49,16 +49,9 @@ public class VehiculoAdapter extends RecyclerView.Adapter<VehiculoAdapter.Vehicu
         public VehiculoHolder(@NonNull View itemView) {
             super(itemView);
 
-            marca = itemView.findViewById(R.id.item_brand);
-            modelo = itemView.findViewById(R.id.item_model);
+            marca = itemView.findViewById(R.id.item_marca);
+            modelo = itemView.findViewById(R.id.item_modelo);
         }
 
-        itemView.setOnClickListener(view -> {
-            long vehiculoId = vehiculoList.get(getAdapterPosition()).getId();
-
-            Intent intent = new Intent(itemView.getContext(), DetailActivityView.class);
-            intent.putExtra("VEHICULO_ID", vehiculoId);
-            startActivity(itemView.getContext(), intent, null);
-        }
     }
 }

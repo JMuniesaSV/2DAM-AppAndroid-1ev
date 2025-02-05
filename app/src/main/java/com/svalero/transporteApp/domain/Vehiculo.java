@@ -16,7 +16,7 @@ public class Vehiculo implements Parcelable {
     private double latitud;
     private double longitud;
 
-    public Vehiculo(String matricula, String marca, String modelo, Float capacidadCarga, double latitud, double longitud) {
+    public Vehiculo(String matricula, String marca, double latitud, double longitud) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;

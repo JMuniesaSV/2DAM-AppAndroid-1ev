@@ -52,17 +52,11 @@ public class RegisterVehiculoView extends AppCompatActivity implements RegisterV
             Toast.makeText(this, "Selecciona una ubicación en el mapa", Toast.LENGTH_SHORT).show();
             return;
         }
-        try {
-            String matricula = ((EditText) findViewById(R.id.matricula)).getText().toString();
-            String marca = ((EditText) findViewById(R.id.marca)).getText().toString();
-            String modelo = ((EditText) findViewById(R.id.modelo)).getText().toString();
-            Float capacidadCarga = Float.parseFloat(((EditText) findViewById(R.id.capacidad_carga)).getText().toString());
+        String marca = ((EditText) findViewById(R.id.marca)).getText().toString();
+        String modelo = ((EditText) findViewById(R.id.modelo)).getText().toString();
 
-            Vehiculo vehiculo = new Vehiculo(matricula, marca, modelo, capacidadCarga, currentPoint.latitude(), currentPoint.longitude());
-            presenter.registerVehiculo(vehiculo);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Vehiculo vehiculo = new Vehiculo(marca, modelo, currentPoint.latitude(), currentPoint.longitude());
+        presenter.registerVehiculo(vehiculo);
     }
 
     @Override
