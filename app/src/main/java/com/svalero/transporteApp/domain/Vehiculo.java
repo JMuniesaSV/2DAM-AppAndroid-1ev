@@ -11,18 +11,16 @@ public class Vehiculo implements Parcelable {
     private String marca;
     private String modelo;
     private Boolean disponible;
-    private Float capacidadCarga;
+    private int capacidadCarga;
     private LocalDate fechaFabricacion;
     private double latitud;
     private double longitud;
 
-    public Vehiculo(String matricula, String marca, double latitud, double longitud) {
+    public Vehiculo(String matricula, String marca, String modelo, int capacidadCarga, double latitud, double longitud) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
-        this.disponible = disponible;
         this.capacidadCarga = capacidadCarga;
-        this.fechaFabricacion = fechaFabricacion;
         this.latitud = latitud;
         this.longitud = longitud;
     }
@@ -33,7 +31,7 @@ public class Vehiculo implements Parcelable {
         marca = in.readString();
         modelo = in.readString();
         disponible = in.readByte() != 0;
-        capacidadCarga = in.readFloat();
+        capacidadCarga = in.readInt();
         latitud = in.readDouble();
         longitud = in.readDouble();
     }
@@ -86,11 +84,11 @@ public class Vehiculo implements Parcelable {
         this.disponible = disponible;
     }
 
-    public Float getCapacidadCarga() {
+    public int getCapacidadCarga() {
         return capacidadCarga;
     }
 
-    public void setCapacidadCarga(Float capacidadCarga) {
+    public void setCapacidadCarga(int  capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
     }
 

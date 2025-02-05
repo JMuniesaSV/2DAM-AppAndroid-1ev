@@ -37,7 +37,7 @@ public class VehiculoListModel implements VehiculoListContract.Model {
 
             @Override
             public void onFailure(Call<List<Vehiculo>> call, Throwable t) {
-                listener.OnLoadVehiculosError("No se ha podido conectar" + "Inténtelo de nuevo");
+                listener.OnLoadVehiculosError("No se ha podido conectar inténtelo de nuevo");
             }
         });
 

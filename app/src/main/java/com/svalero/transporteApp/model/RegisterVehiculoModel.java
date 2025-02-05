@@ -23,13 +23,13 @@ public class RegisterVehiculoModel implements RegisterVehiculoContract.Model {
                         listener.OnRegisterVehiculoSuccess(response.body());
                         break;
                     case 400:
-                        listener.OnRegisterVehiculoError("Error validando petición" + response.message());
+                        listener.OnRegisterVehiculoError("Error validando petición " + response.message());
                         break;
                     case 500:
-                        listener.OnRegisterVehiculoError("Error interno de la API" + response.message());
+                        listener.OnRegisterVehiculoError("Error interno de la API " + response.message());
                         break;
                     default:
-                        listener.OnRegisterVehiculoError("Error invocando la API" + response.message());
+                        listener.OnRegisterVehiculoError("Error invocando la API " + response.message());
                         break;
                 }
             }

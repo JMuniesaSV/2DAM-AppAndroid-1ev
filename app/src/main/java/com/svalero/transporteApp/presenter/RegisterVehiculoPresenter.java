@@ -17,7 +17,7 @@ public class RegisterVehiculoPresenter implements RegisterVehiculoContract.Prese
     @Override
     public void registerVehiculo(Vehiculo vehiculo) {
       if (vehiculo.getMatricula().isEmpty() || vehiculo.getMarca().isEmpty() || vehiculo.getModelo().isEmpty()){
-          view.showErrorMessages("Debe rellenar todos los campos vehiculo, marca y modelo");
+          view.showErrorMessages("Debe rellenar todos los campos vehiculo, matricula, marca y modelo");
           return;
       }
         model.registerVehiculo(vehiculo, this);

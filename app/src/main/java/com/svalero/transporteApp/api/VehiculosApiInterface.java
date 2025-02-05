@@ -19,5 +19,5 @@ public interface VehiculosApiInterface {
     Call<Vehiculo> getVehiculo(@Path("id") int id);
 
     @POST("/api/vehiculos")
-    Call<Vehiculo> addVehiculo(@Path("userId") long userId, @Body Vehiculo vehiculo);
+    Call<Vehiculo> addVehiculo(@Path("id") int id, @Body Vehiculo vehiculo);
 }
