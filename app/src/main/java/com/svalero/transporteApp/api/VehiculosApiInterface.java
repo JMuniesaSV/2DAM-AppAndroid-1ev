@@ -12,12 +12,12 @@ import retrofit2.http.Path;
 
 public interface VehiculosApiInterface {
 
-    @GET("/api/vehiculos")
+    @GET("api/vehiculos")
     Call<List<Vehiculo>> getVehiculos();
 
-    @GET("/api/vehiculos/{id}")
+    @GET("api/vehiculos/{id}")
     Call<Vehiculo> getVehiculo(@Path("id") int id);
 
-    @POST("/api/vehiculos")
+    @POST("api/vehiculos")
     Call<Vehiculo> addVehiculo(@Path("id") int id, @Body Vehiculo vehiculo);
 }
